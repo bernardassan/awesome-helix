@@ -20,7 +20,7 @@ tools:
     lint-command: selene --config ~/.config/helix/selene/selene.toml --display-style Quiet -
     lint-ignore-exit-code: true
     lint-stdin: true
-    lint-formats: 
+    lint-formats:
       - '%f:%l:%c: %trror%m'
       - '%f:%l:%c: %tarning%m'
       - '%f:%l:%c: %tote%m'
@@ -36,7 +36,7 @@ tools:
   # php-cs-fixer: &php-cs-fixer
   #   format-command: php-cs-fixer fix --no-ansi --using-cache=no --no-interaction --quiet '${INPUT}'
   #   format-stdin: false
-  
+
   # python-mypy: &python-mypy
   #   prefix: mypy
   #   lint-command: dmypy run --timeout 300 -- --strict --show-column-numbers
@@ -59,7 +59,7 @@ tools:
 
   c-gcc: &c-gcc
     prefix: gcc
-    lint-command: gcc -x c -std=c2x -Wall -Wextra -pedantic -pedantic-errors -Wformat=2 -Wformat-overflow=2 -Wformat-signedness -Wformat-truncation=2 -Wnull-dereference -fdelete-null-pointer-checks -Wuninitialized -Winit-self -Wswitch-enum -Warray-bounds=2 -Wstrict-aliasing=1 -fstrict-aliasing -Wstrict-flex-arrays -fstrict-flex-arrays=3 -Wsuggest-attribute=pure -Wsuggest-attribute=const -Wsuggest-attribute=noreturn -Wsuggest-attribute=malloc -Wsuggest-attribute=format -Wsuggest-attribute=cold -Walloc-zero -Walloca -ftree-vrp -Wduplicated-branches -Wduplicated-cond -Wtrampolines -Wfloat-equal -Wshadow -Wunsafe-loop-optimizations -Wundef -Wbad-function-cast -Wcast-qual -Wcast-align -Wwrite-strings -Wconversion -Wjump-misses-init -Wlogical-op -Wstrict-prototypes -Wold-style-definition -Wmissing-prototypes -Wpacked -Wpadded -Wredundant-decls -Wnested-externs -Winline -Wvector-operation-performance -Wno-vla -Wstack-protector -fstack-protector -fdiagnostics-plain-output -fanalyzer -o /dev/null -c '${INPUT}'
+    lint-command: gcc -x c -std=c23 -Wall -Wextra -pedantic -pedantic-errors -Wformat=2 -Wformat-overflow=2 -Wformat-signedness -Wformat-truncation=2 -Wnull-dereference -fdelete-null-pointer-checks -Wuninitialized -Winit-self -Wswitch-enum -Warray-bounds=2 -Wstrict-aliasing=1 -fstrict-aliasing -Wstrict-flex-arrays -fstrict-flex-arrays=3 -Wsuggest-attribute=pure -Wsuggest-attribute=const -Wsuggest-attribute=noreturn -Wsuggest-attribute=malloc -Wsuggest-attribute=format -Wsuggest-attribute=cold -Walloc-zero -Walloca -ftree-vrp -Wduplicated-branches -Wduplicated-cond -Wtrampolines -Wfloat-equal -Wshadow -Wunsafe-loop-optimizations -Wundef -Wbad-function-cast -Wcast-qual -Wcast-align -Wwrite-strings -Wconversion -Wjump-misses-init -Wlogical-op -Wstrict-prototypes -Wold-style-definition -Wmissing-prototypes -Wpacked -Wpadded -Wredundant-decls -Wnested-externs -Winline -Wvector-operation-performance -Wno-vla -Wstack-protector -fstack-protector -fdiagnostics-plain-output -fanalyzer -o /dev/null -c '${INPUT}'
     lint-stdin: false
     lint-ignore-exit-code: true
     lint-formats:
@@ -86,7 +86,7 @@ tools:
 # https://discourse.llvm.org/t/list-of-clang-tidy-checks-supported-in-clangd/61013
   c-clang-analyzer: &c-clang-analyzer
     prefix: clang-analyzer
-    lint-command: clang -x c -std=c2x --analyze -Xclang -analyzer-checker=core,deadcode,nullability,optin,security,unix,valist,alpha -o /dev/null '${INPUT}'
+    lint-command: clang -x c -std=c23 --analyze -Xclang -analyzer-checker=core,deadcode,nullability,optin,security,unix,valist,alpha -o /dev/null '${INPUT}'
     lint-stdin: false
     lint-ignore-exit-code: true
     lint-formats:
