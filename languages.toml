@@ -4,6 +4,14 @@ formatter = { command = "taplo", args = ["format", "-"] }
 auto-format = true
 
 [[language]]
+name = "xml"
+formatter = { command = "xmllint", args = ["--format", "-"] }
+auto-format = true
+
+[[language.file-types]]
+["xslt"]
+
+[[language]]
 name = "python"
 # use pylsp-mypy for mypy
 language-servers = ["pylsp", "ruff"]
