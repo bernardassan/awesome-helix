@@ -173,7 +173,9 @@ args = ["--clang-tidy", "-j=5", "--malloc-trim"]
 name = "c"
 language-servers = [
   "clangd",
-  { name = "efm", only-features = ["diagnostics"] }, # gcc lints and cppcheck
+  { name = "efm", only-features = [
+    "diagnostics",
+  ] }, # gcc, clang-analyzer and cppcheck lints
 ]
 file-types = ["c", "h"]
 auto-format = true
