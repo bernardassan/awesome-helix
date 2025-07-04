@@ -180,21 +180,20 @@ language-servers = [
 file-types = ["c", "h"]
 auto-format = true
 
+# shellcheck and shfmt is integrated into bash-language-server
 [[language]]
 name = "bash"
-formatter = { command = "shfmt", args = ["--indent", "2", "-"] }
 auto-format = true
 
 [[language]]
 name = "pkgbuild"
-formatter = { command = "shfmt", args = ["--indent", "2", "-"] }
-auto-format = true
 language-servers = [
   "pkgbuild-language-server",
-  { except-features = [
+  { name = "bash-language-server", except-features = [
     # "diagnostics",
-  ], name = "bash-language-server" },
+  ] },
 ]
+auto-format = true
 
 [[language]]
 name = "mojo"
