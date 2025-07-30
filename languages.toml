@@ -182,6 +182,28 @@ auto-format = true
 
 # shellcheck and shfmt is integrated into bash-language-server
 [[language]]
+name = "cpp"
+language-servers = [
+  "clangd",
+  { name = "efm", only-features = [
+    "diagnostics",
+  ] }, # clang-analyzer and cppcheck lints
+]
+file-types = [
+  "cc",
+  "ccm",
+  "cxx",
+  "cxxm",
+  "c++",
+  "c++m",
+  "cpp",
+  "cppm",
+  "hxx",
+  "hpp",
+]
+auto-format = true
+
+[[language]]
 name = "bash"
 auto-format = true
 
