@@ -92,7 +92,7 @@ auto-format = true
 [language-server.zls.config]
 enable_build_on_save = true
 build_on_save_args = ["check", "-fincremental", "--watch"]
-enable_autofix = false
+force_autofix = true
 warn_style = true
 highlight_global_var_declarations = true
 
