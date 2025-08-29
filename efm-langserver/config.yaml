@@ -48,9 +48,10 @@ tools:
   #     - '%f:%l:%c: %tarning: %m'
   #     - '%f:%l:%c: %tote: %m'
 
+  # Use -O2 since some warnings are only effective with optimizations ON
   c-gcc: &c-gcc
     prefix: gcc
-    lint-command: gcc -xc -std=c2y -pedantic -pedantic-errors -D_XOPEN_SOURCE=800 -Wall -Walloc-zero -Walloca -Warray-bounds=2 -Wbad-function-cast -Wcalloc-transposed-args -Wcast-align=strict -Wcast-qual -Wconversion -Wdangling-pointer=2 -Wdate-time -Wduplicated-branches -Wduplicated-cond -Wextra -Wflex-array-member-not-at-end -Wfloat-equal -Wformat-overflow=2 -Wformat-signedness -Wformat-truncation=2 -Wformat=2 -Winit-self -Winline -Wjump-misses-init -Wlogical-op -Wmissing-format-attribute -Wmissing-noreturn -Wmissing-prototypes -Wmissing-variable-declarations -Wnested-externs -Wno-vla -Wnull-dereference -Wold-style-definition -Wpacked -Wpadded -Wredundant-decls -Wshadow=global -Wstrict-flex-arrays -Wstrict-overflow=5 -Wstrict-prototypes -Wstringop-overflow=4 -Wsuggest-attribute=cold -Wsuggest-attribute=const -Wsuggest-attribute=format -Wsuggest-attribute=malloc -Wsuggest-attribute=noreturn -Wsuggest-attribute=pure -Wsuggest-attribute=returns_nonnull -Wswitch-enum -Wtrampolines -Wtrivial-auto-var-init -Wundef -Wuninitialized -Wunsafe-loop-optimizations -Wunterminated-string-initialization -Wunused-macros -Wuse-after-free=3 -Wvector-operation-performance -Wwrite-strings -Wzero-as-null-pointer-constant -fdelete-null-pointer-checks -ftrivial-auto-var-init=pattern -fipa-pure-const -fstrict-aliasing -fstrict-flex-arrays=3 -ftree-vrp -funsafe-loop-optimizations -fdiagnostics-plain-output -fanalyzer -o /dev/null -c '${INPUT}'
+    lint-command: gcc -O2 -xc -std=c2y -pedantic -pedantic-errors -D_XOPEN_SOURCE=800 -Wall -Walloc-zero -Walloca -Warray-bounds=2 -Wbad-function-cast -Wcalloc-transposed-args -Wcast-align=strict -Wcast-qual -Wconversion -Wdangling-pointer=2 -Wdate-time -Wduplicated-branches -Wduplicated-cond -Wextra -Wflex-array-member-not-at-end -Wfloat-equal -Wformat-overflow=2 -Wformat-signedness -Wformat-truncation=2 -Wformat=2 -Winit-self -Winline -Wjump-misses-init -Wlogical-op -Wmissing-format-attribute -Wmissing-noreturn -Wmissing-prototypes -Wmissing-variable-declarations -Wnested-externs -Wno-vla -Wnull-dereference -Wold-style-definition -Wpacked -Wpadded -Wredundant-decls -Wshadow=global -Wstrict-flex-arrays -Wstrict-overflow=5 -Wstrict-prototypes -Wstringop-overflow=4 -Wsuggest-attribute=cold -Wsuggest-attribute=const -Wsuggest-attribute=format -Wsuggest-attribute=malloc -Wsuggest-attribute=noreturn -Wsuggest-attribute=pure -Wsuggest-attribute=returns_nonnull -Wswitch-enum -Wtrampolines -Wtrivial-auto-var-init -Wundef -Wuninitialized -Wunsafe-loop-optimizations -Wunterminated-string-initialization -Wunused-macros -Wuse-after-free=3 -Wvector-operation-performance -Wwrite-strings -Wzero-as-null-pointer-constant -fdelete-null-pointer-checks -ftrivial-auto-var-init=pattern -fipa-pure-const -fstrict-aliasing -fstrict-flex-arrays=3 -ftree-vrp -funsafe-loop-optimizations -fdiagnostics-plain-output -fanalyzer -o /dev/null -c '${INPUT}'
     lint-stdin: false
     lint-ignore-exit-code: true
     lint-formats:
@@ -91,7 +92,7 @@ tools:
 # https://discourse.llvm.org/t/list-of-clang-tidy-checks-supported-in-clangd/61013
   c-clang-analyzer: &c-clang-analyzer
     prefix: clang-analyzer
-    lint-command: clang -x c -std=c2y -D_XOPEN_SOURCE=800 --analyze -Xclang -analyzer-checker=core,deadcode,nullability,optin,security,unix,valist,alpha -o /dev/null '${INPUT}'
+    lint-command: clang -xc -std=c2y -D_XOPEN_SOURCE=800 --analyze -Xclang -analyzer-checker=core,deadcode,nullability,optin,security,unix,valist,alpha -o /dev/null '${INPUT}'
     lint-stdin: false
     lint-ignore-exit-code: true
     lint-formats:
@@ -101,7 +102,7 @@ tools:
 
   cpp-clang-analyzer: &cpp-clang-analyzer
     prefix: clang-analyzer
-    lint-command: clang -x c -std=c++26 -D_XOPEN_SOURCE=800 --analyze -Xclang -analyzer-checker=core,deadcode,nullability,optin,security,unix,valist,alpha -o /dev/null '${INPUT}'
+    lint-command: clang -xc -std=c++26 -D_XOPEN_SOURCE=800 --analyze -Xclang -analyzer-checker=core,deadcode,nullability,optin,security,unix,valist,alpha -o /dev/null '${INPUT}'
     lint-stdin: false
     lint-ignore-exit-code: true
     lint-formats:
