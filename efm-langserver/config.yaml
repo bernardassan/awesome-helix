@@ -88,11 +88,12 @@ tools:
       - 'compile_commands.json'
       - 'CmakeLists.txt'
 
+# https://clang-analyzer.llvm.org/checker_dev_manual.html
+# clang -cc1 -help | grep "analyzer"
 # https://github.com/clangd/clangd/issues/905 clangd doesn't show the static analyzer warnings
-# https://discourse.llvm.org/t/list-of-clang-tidy-checks-supported-in-clangd/61013
   c-clang-analyzer: &c-clang-analyzer
     prefix: clang-analyzer
-    lint-command: clang -xc -std=c2y -D_XOPEN_SOURCE=800 --analyze -Xclang -analyzer-checker=core,deadcode,nullability,optin,security,unix,valist,alpha -o /dev/null '${INPUT}'
+    lint-command: clang -xc -std=c2y -D_XOPEN_SOURCE=800 --analyze -Xclang -analyzer-checker=core,deadcode,nullability,optin,security,unix,valist,alpha -Xclang -analyzer-disable-checker=security.insecureAPI.DeprecatedOrUnsafeBufferHandling -o /dev/null '${INPUT}'
     lint-stdin: false
     lint-ignore-exit-code: true
     lint-formats:
@@ -102,7 +103,7 @@ tools:
 
   cpp-clang-analyzer: &cpp-clang-analyzer
     prefix: clang-analyzer
-    lint-command: clang -xc -std=c++26 -D_XOPEN_SOURCE=800 --analyze -Xclang -analyzer-checker=core,deadcode,nullability,optin,security,unix,valist,alpha -o /dev/null '${INPUT}'
+    lint-command: clang -xc++ -std=c++26 -D_XOPEN_SOURCE=800 --analyze -Xclang -analyzer-checker=core,cplusplus,deadcode,nullability,optin,security,unix,valist,alpha -Xclang -analyzer-disable-checker=security.insecureAPI.DeprecatedOrUnsafeBufferHandling -o /dev/null '${INPUT}'
     lint-stdin: false
     lint-ignore-exit-code: true
     lint-formats:
