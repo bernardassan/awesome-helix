@@ -150,7 +150,10 @@ S-space = ["half_page_up"]
 # a = ["append_mode", "collapse_selection"
 # esc = ["collapse_selection", "keep_primary_selection"]
 # Enhance Smart Tab
-tab = "move_parent_node_end"
+# Windows Terminal doesn't support Enhanced Keyboard
+# https://github.com/microsoft/terminal/issues/11509
+# so enabling this conflicts with ctrl-i (jump_forward) command
+# tab = "move_parent_node_end"
 S-tab = "move_parent_node_start"
 
 [keys.normal.space]
