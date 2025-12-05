@@ -208,6 +208,14 @@ name = "bash"
 auto-format = true
 
 [[language]]
+name = "udevrules"
+scope = "source.udevrules"
+injection-regex = "udevrules"
+comment-token = "#"
+indent = { tab-width = 2, unit = "  " }
+file-types = [{ glob = "udev/rules.d/*" }]
+
+[[language]]
 name = "pkgbuild"
 language-servers = [
   "pkgbuild-language-server",
