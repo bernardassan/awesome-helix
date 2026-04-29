@@ -275,6 +275,15 @@ language-servers = [
   "tailwindcss-lsp",
 ]
 
+[[language]]
+name = "superhtml"
+scope = "source.superhtml"
+roots = []
+file-types = ["shtml"]
+injection-regex = "superhtml|shtml"
+auto-format = true
+language-servers = [ "superhtml-lsp" ]
+
 [language-server.biome]
 command = "biome"
 args = ["lsp-proxy"]
